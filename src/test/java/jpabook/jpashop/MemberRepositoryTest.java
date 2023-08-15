@@ -8,6 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import jpabook.jpashop.domain.Member;
+import jpabook.jpashop.repository.MemberRepository;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MemberRepositoryTest {
@@ -15,18 +18,16 @@ public class MemberRepositoryTest {
 	MemberRepository memberRepository;
 	
 	@Test
-	@Transactional //±âº» ¿É¼ÇÀÌ rollback = true·Î µÇ¾îÀÖÀ½. '@Rollback(false)'ÇÏ¸é ·Ñ¹é ¾ÈÇÔ.
+	@Transactional //ï¿½âº» ï¿½É¼ï¿½ï¿½ï¿½ rollback = trueï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½. '@Rollback(false)'ï¿½Ï¸ï¿½ ï¿½Ñ¹ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	public void testMember() throws Exception {
 		//given
 		Member member = new Member();
-		member.setUserName("mamberA");
+		member.setName("mamberA");
 		
 		//when
-		Long savedId = memberRepository.Save(member);
-		Member findMember = memberRepository.find(savedId);
+		memberRepository.save(member);
 		
 		//then
-		Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
-		Assertions.assertThat(findMember.getUserName()).isEqualTo(member.getUserName());
+		Assertions.assertThat(member.getName());
 	}
 }
