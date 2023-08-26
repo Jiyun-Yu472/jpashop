@@ -18,7 +18,7 @@ public class MemberRepositoryTest {
 	MemberRepository memberRepository;
 	
 	@Test
-	@Transactional //�⺻ �ɼ��� rollback = true�� �Ǿ�����. '@Rollback(false)'�ϸ� �ѹ� ����.
+	@Transactional //default value is rollback = true, if you want to watch result data, set value to '@Rollback(false)'.
 	public void testMember() throws Exception {
 		//given
 		Member member = new Member();
